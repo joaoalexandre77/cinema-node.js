@@ -4,26 +4,28 @@
         <div class="div-table">
             <table>
             <tr>
-                <th>Poster</th>
-                <th>Título</th>
-                <th>Genero</th>
-                <th>Data de estreia</th>
+                <th>POSTER</th>
+                <th>TÍTULO</th>
+                <th>GENERO</th>
+                <th>DATA DE ESTREIA</th>
             </tr>
             <tbody>
-                <tr>
-                    <td>
-                        <img src="https://oca.observatorio.uff.br/wp-content/uploads/sites/468/2026/03/panico-7-1080x675.png" alt="">
-                    </td>
-                    <td>
-                        Panico 7
-                    </td>
-                    <td>
-                        Terror
-                    </td>
-                    <td>
-                        26/02
-                    </td>
-                </tr>
+                <% estreias.forEach((estreia) => { %>
+                    <tr>
+                        <td>
+                            <img src="<%= estreia.img%>" alt="">
+                        </td>
+                        <td>
+                            <%= estreia.Titulo %>
+                        </td>
+                        <td>
+                            <%= estreia.genero %>
+                        </td>
+                        <td>
+                            <%= estreia.data %>
+                        </td>
+                    </tr>
+                <% }) %>
             </tbody> 
         </table>
         </div>
