@@ -1,0 +1,11 @@
+    <%-include ('partials/header.ejs')%>
+    <main class="main-perfil">
+        <h1>Perfil</h1>
+        <div class="content-data-perfil">
+            <img src="<%= user.img%>" alt="" class="img-perfil">
+            <h1 class="h1-perfil"><%= user.nome%></h1>
+            <h2 class="h2-perfil"><%= user.email%></h2>
+        </div>
+    </main>
+</body>
+</html>
