@@ -1,0 +1,32 @@
+<%-include ('partials/header.ejs')%>
+    <!-- Formulário de edição -->
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Alterar cliente</h1>
+                <hr>
+            </div>
+            <div class="card-body">
+                <form action="/estreias/alterar" method="POST">
+                    <label>url da imagem</label>
+                    <input type="text" name="url" placeholder="Insira a url da imagem" class="form-control" required value="<%= estreia.urlImage%>">
+
+                    <label>titulo do filme</label>
+                    <input type="text" name="titulo" placeholder="Insira o titulo do filme" class="form-control" required value="<%= estreia.titulo%>">
+
+                    <label>genero do filme</label>
+                    <input type="text" name="genero" placeholder="Insira o genero do filme" class="form-control" required value="<%= estreia.genero%>">
+
+                    <label>data de estreia</label>
+                    <input type="text" name="estreia" placeholder="Insira a data de estreia do filme" class="form-control" required value="<%= estreia.dataEstreia%>">
+                    <br>
+                    <input type="hidden" name="id" value="<%= estreia.id %>">
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                    <button type="reset" class="btn btn-danger">Limpar</button>
+                </form>
+                <hr>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
