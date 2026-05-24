@@ -128,7 +128,7 @@ main {
 
 .div-table {
   display: flex;
-  height: 800px;
+  height: 300px;
   justify-content: center;
   overflow-y: auto;
 }
@@ -150,6 +150,7 @@ main {
 
 table {
   width: 60%;
+  border-collapse: separate;
   border-spacing: 0px 15px;
   table-layout: fixed;
   height: 80px;
