@@ -1,0 +1,62 @@
+    <%-include ('partials/header.ejs')%>
+
+    <main class="main-estreia">
+        <br>
+        <h1 class="h1-estreia">Diretores</h1>
+
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Cadastrar Diretor</h1>
+                </div>
+                <div class="card-body">
+                    <form action="/diretores/cadastrar" method="POST">
+                        <label>Nome do diretor</label>
+                        <input type="text" name="nome" placeholder="Insira o nome do diretor" class="form-control" required>
+
+                        <label>Idade do diretor</label>
+                        <input type="text" name="idade" placeholder="Insira a idade do diretor" class="form-control" required>
+
+                        <label>Genero de filmes do diretor</label>
+                        <input type="text" name="genero" placeholder="Insira o genero de filme" class="form-control" required>
+                        <br>
+                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                        <button type="reset" class="btn btn-danger">Limpar</button>
+                    </form>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        <div class="div-table">
+            <table>
+            <tr>
+                <th>NOME</th>
+                <th>IDADE</th>
+                <th>GENERO</th>
+                <th>AÇÕES</th>
+            </tr>
+            <tbody>
+                <% diretores.forEach((diretor) => { %>
+                    <tr>
+                        <td>
+                            <%= diretor.nomeDiretor %>
+                        </td>
+                        <td>
+                            <%= diretor.idadeDiretor %>
+                        </td>
+                        <td>
+                            <%= diretor.generoDiretor %>
+                        </td>
+                         <td>
+                            <a href="/diretores/alterar/<%= diretor.id%>"><button class="btn btn-warning">Editar</button></a>
+                            <a href="/diretores/excluir/<%= diretor.id%>"><button onclick="return confirm('Deseja mesmo excluir o Diretor?')" class="btn btn-danger">Excluir</button></a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody> 
+        </table>
+        </div>
+    </main>
+</body>
+</html>

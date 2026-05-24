@@ -1,11 +1,12 @@
     <%-include ('partials/header.ejs')%>
     <main class="main-estreia">
+        <br>
         <h1 class="h1-estreia">Estreias</h1>
 
         <div class="container">
             <div class="card">
                 <div class="card-header">
-                    <h1>Cadastrar cliente</h1>
+                    <h1>Cadastrar Filme</h1>
                 </div>
                 <div class="card-body">
                     <form action="/estreias/cadastrar" method="POST">
@@ -20,6 +21,13 @@
 
                         <label>data de estreia</label>
                         <input type="text" name="estreia" placeholder="Insira a data de estreia do filme" class="form-control" required>
+
+                        <label>Escolha o Diretor:</label>
+                        <select name="diretorId" id=""   class="form-control" >
+                            <% diretores.forEach(diretor =>{ %>
+                                <option value="<%= diretor.id%>"> <%= diretor.nomeDiretor %></option>
+                            <%})%>   
+                        </select>
                         <br>
                         <button type="submit" class="btn btn-success">Cadastrar</button>
                         <button type="reset" class="btn btn-danger">Limpar</button>
@@ -36,6 +44,7 @@
                 <th>TÍTULO</th>
                 <th>GENERO</th>
                 <th>DATA DE ESTREIA</th>
+                <th>DIRETOR</th>
                 <th>AÇÕES</th>
             </tr>
             <tbody>
@@ -53,9 +62,12 @@
                         <td>
                             <%= estreia.dataEstreia %>
                         </td>
+                        <td>
+                            <%= estreia.diretore.nomeDiretor %>
+                        </td>
                          <td>
                             <a href="/estreias/editar/<%= estreia.id%>"><button class="btn btn-warning">Editar</button></a>
-                            <a href="/estreias/excluir/<%= estreia.id%>"><button onclick="return confirm('Deseja mesmo excluir o cliente?')" class="btn btn-danger">Excluir</button></a>
+                            <a href="/estreias/excluir/<%= estreia.id%>"><button onclick="return confirm('Deseja mesmo excluir a estreia?')" class="btn btn-danger">Excluir</button></a>
                         </td>
                     </tr>
                 <% }) %>

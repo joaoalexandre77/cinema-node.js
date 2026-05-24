@@ -1,0 +1,31 @@
+    <%-include ('partials/header.ejs')%>
+
+    <main class="main-estreia">
+        <br>
+        <h1 class="h1-estreia">Diretores</h1>
+
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Cadastrar Diretor</h1>
+                </div>
+                <div class="card-body">
+                    <form action="/diretores/alterar" method="POST">
+                        <input type="hidden" name="id" value="<%= diretores.id%>">
+                        <label>Nome do diretor</label>
+                        <input type="text" name="nome" placeholder="Insira o nome do diretor" class="form-control" required value="<%= diretores.nomeDiretor%>">
+
+                        <label>Idade do diretor</label>
+                        <input type="text" name="idade" placeholder="Insira a idade do diretor" class="form-control" required value="<%= diretores.idadeDiretor%>">
+
+                        <label>Genero de filmes do diretor</label>
+                        <input type="text" name="genero" placeholder="Insira o genero de filme" class="form-control" required value="<%= diretores.generoDiretor%>">
+                        <br>
+                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                        <button type="reset" class="btn btn-danger">Limpar</button>
+                    </form>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </main>

@@ -5,6 +5,8 @@ import homeController from './controllers/homeController.js';
 import filmeController from './controllers/filmeController.js';
 import estreiasController from './controllers/estreiasController.js';
 import perfilController from './controllers/perfilController.js';
+import diretoresController from './controllers/diretoresController.js';
+import associations from './config/associations.js';
 
 // Realizando a conexão com o banco de dados
 connection.authenticate()
@@ -21,6 +23,8 @@ connection.query("CREATE DATABASE IF NOT EXISTS cinemajs").then(() => {
     console.log(`Ocorreu um erro ao criar o banco de dados. erro: ${e}`);
 })
 
+associations();
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -34,6 +38,7 @@ app.use('/', homeController);
 app.use('/', filmeController);
 app.use('/', estreiasController);
 app.use('/', perfilController);
+app.use('/', diretoresController);
 
 const port = 8080;
 app.listen(port, (err) => {

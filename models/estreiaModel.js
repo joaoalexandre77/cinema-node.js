@@ -18,6 +18,10 @@ const Estreia = connection.define('estreias', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    idDiretor: {
+        type: Sequelize.INTEGER, 
+        allowNull: false
+    }
 })
 
 Estreia.sync({force: false});

@@ -9,18 +9,26 @@
             <div class="card-body">
                 <form action="/estreias/alterar" method="POST">
                     <label>url da imagem</label>
-                    <input type="text" name="url" placeholder="Insira a url da imagem" class="form-control" required value="<%= estreia.urlImage%>">
+                    <input type="text" name="url" placeholder="Insira a url da imagem" class="form-control" required value="<%= estreias.urlImage%>">
 
                     <label>titulo do filme</label>
-                    <input type="text" name="titulo" placeholder="Insira o titulo do filme" class="form-control" required value="<%= estreia.titulo%>">
+                    <input type="text" name="titulo" placeholder="Insira o titulo do filme" class="form-control" required value="<%= estreias.titulo%>">
 
                     <label>genero do filme</label>
-                    <input type="text" name="genero" placeholder="Insira o genero do filme" class="form-control" required value="<%= estreia.genero%>">
+                    <input type="text" name="genero" placeholder="Insira o genero do filme" class="form-control" required value="<%= estreias.genero%>">
 
                     <label>data de estreia</label>
-                    <input type="text" name="estreia" placeholder="Insira a data de estreia do filme" class="form-control" required value="<%= estreia.dataEstreia%>">
+                    <input type="text" name="estreia" placeholder="Insira a data de estreia do filme" class="form-control" required value="<%= estreias.dataEstreia%>">
                     <br>
-                    <input type="hidden" name="id" value="<%= estreia.id %>">
+                    
+                    <input type="hidden" name="id" value="<%= estreias.id %>">
+
+                    <select name="diretorId" class="form-control">
+                        <% diretores.forEach(diretor =>{ %>
+                            <option value="<%= diretor.id%>"> <%= diretor.nomeDiretor %></option>
+                        <%})%>   
+                    </select>
+
                     <button type="submit" class="btn btn-success">Cadastrar</button>
                     <button type="reset" class="btn btn-danger">Limpar</button>
                 </form>

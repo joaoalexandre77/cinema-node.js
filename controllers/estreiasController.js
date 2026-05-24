@@ -1,14 +1,28 @@
 import express from 'express';
 import Estreia from '../models/estreiaModel.js';
+import Diretor from '../models/diretoresModel.js';
 import { where } from 'sequelize';
 const router = express.Router();
 
 router.get('/estreias', (req, res) => {
-    Estreia.findAll().then(response => {
-        res.render('estreias', {
-            estreias : response
-        });
-    }).catch(e => console.log(e));
+    Promise.all([
+        Estreia.findAll({
+            include: [
+                {
+                    model: Diretor,
+                    required: true
+                },
+            ],
+        }),
+        Diretor.findAll(),
+    ]).then(([estreias, diretores]) => {
+        res.render("estreias", {
+            estreias: estreias,
+            diretores: diretores
+        })
+    }).catch((erro) =>{
+        console.log(erro);
+    })
     
 })
 
@@ -18,9 +32,10 @@ router.post('/estreias/cadastrar', (req, res) => {
     const titulo = req.body.titulo;
     const genero = req.body.genero;
     const estreia = req.body.estreia;
+    const diretor = req.body.diretorId;
 
     Estreia.create({
-        urlImage: url, titulo: titulo, genero: genero, dataEstreia: estreia
+        urlImage: url, titulo: titulo, genero: genero, dataEstreia: estreia, idDiretor: diretor
     }).then(() => {
         res.redirect('/estreias')
     }).catch(e => console.log(e));
@@ -40,11 +55,19 @@ router.get('/estreias/excluir/:id', (req, res) => {
 
 router.get('/estreias/editar/:id', (req, res) => {
     const id = req.params.id;
-    Estreia.findByPk(id).then((response) => {
-        res.render('estreiasEditar', {
-            estreia: response
-        });
-    }).catch(e => console.log(e));
+
+    Promise.all([
+        Estreia.findByPk(id),
+        Diretor.findAll()
+    ]).then(([estreias, diretores]) => {
+        res.render("estreiasEditar", {
+            estreias: estreias,
+            diretores: diretores
+        })
+    }).catch((erro) =>{
+        console.log(erro);
+    })
+    
 })
 
 router.post('/estreias/alterar', (req, res) => {
@@ -53,10 +76,11 @@ router.post('/estreias/alterar', (req, res) => {
     const titulo = req.body.titulo;
     const genero = req.body.genero;
     const estreia = req.body.estreia;
+    const diretor = req.body.diretorId;
 
     Estreia.update(
         {
-            urlImage: url, titulo: titulo, genero: genero, dataEstreia: estreia
+            urlImage: url, titulo: titulo, genero: genero, dataEstreia: estreia, idDiretor: diretor
         },
         {
             where:{id: id}
